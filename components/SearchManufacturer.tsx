@@ -1,24 +1,26 @@
 "use client"
-import { SearchManufacturerProps } from '@/types'
-import { Combobox, Transition } from '@headlessui/react'
-import Image from 'next/image'
-import { Fragment, useState } from 'react'
-import { manufacturers } from '@/constants'
+import Image from "next/image";
+import { Fragment, useState } from "react";
+import { Combobox, Transition } from "@headlessui/react";
+
+import { manufacturers } from "@/constants";
+import { SearchManufacturerProps } from "@/types";
 
 const SearchManufacturer = ({ manufacturer, setManufacturer }: SearchManufacturerProps) => {
   const [query, setQuery] = useState("");
 
-  const filteredManufacturers = query === "" 
-    ? manufacturers
-    : manufacturers.filter((item) => (
-      item.toLowerCase()
-      .replace(/\s+/g, "")
-      .includes(query.toLowerCase().replace(/\s+/g,
-      "")
-    )))
+  const filteredManufacturers =
+    query === ""
+      ? manufacturers
+      : manufacturers.filter((item) =>
+          item
+            .toLowerCase()
+            .replace(/\s+/g, "")
+            .includes(query.toLowerCase().replace(/\s+/g, ""))
+        );
 
   return (
-<div className='search-manufacturer'>
+    <div className='search-manufacturer'>
       <Combobox value={manufacturer} onChange={setManufacturer}>
         <div className='relative w-full'>
           {/* Button for the combobox. Click on the icon to see the complete dropdown */}
@@ -91,7 +93,7 @@ const SearchManufacturer = ({ manufacturer, setManufacturer }: SearchManufacture
         </div>
       </Combobox>
     </div>
-  )
-}
+  );
+};
 
-export default SearchManufacturer
+export default SearchManufacturer;
